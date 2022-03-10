@@ -5,6 +5,8 @@ public class main {
 
         planer.flying(6);
         planer.showPosition();
+        planer.encriptoCeaser();
+        planer.decrupto();
 
     }
 

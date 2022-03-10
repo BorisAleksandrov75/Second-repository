@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Random;
 
 public class airplane {
@@ -57,6 +58,46 @@ public class airplane {
 
     public void showPosition () {
         System.out.println("Your position x= " + x + ", y= " + y );
+    }
+
+    public String encriptoCeaser () {
+        String alfavit = "ABCDEFGHIJKLMNOPQRSTUVWXYZ_0123456789";
+        fotonum++;
+
+        String enterkey = "YOUR_POSITION_AND_NUMBER_X" + x + "_Y" + y + "_N" + fotonum;
+        int[] numshifr = new int[enterkey.length()];
+
+        for (int j = 0; j < enterkey.length(); j++) {
+            for (int k = 0; k < alfavit.length(); k++) {
+                if (alfavit.charAt(k) == enterkey.charAt(j)) {
+                    numshifr[j] = k + r;
+                    if (numshifr[j] > 37) {
+                        numshifr[j] -= 37;
+                    }
+                }
+            }
+        }
+        return Arrays.toString(numshifr);
+    }
+
+    public void decrupto () {
+        String[] alfavit = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N",
+                "O","P","Q","R","S","T","U","V","W","X","Y","Z","_","0","1","2","3"
+                ,"4","5","6","7","8","9"};
+
+        String a = encriptoCeaser();
+        String[] decripttext = a.replace(" ","").replace("[","").replace("]","").split(",");
+        String[] result = new String[decripttext.length];
+
+        for (int i = 0; i < decripttext.length; i++) {
+            if (Integer.parseInt(decripttext[i]) - r < 0) {
+                result[i] = alfavit[Integer.parseInt(decripttext[i]) - r + 37];
+            } else {
+                result[i] = alfavit[Integer.parseInt(decripttext[i]) - r];
+            }
+        }
+
+        System.out.println(Arrays.toString(result));
     }
 
 }
